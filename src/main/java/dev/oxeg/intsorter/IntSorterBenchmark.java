@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @Fork(1)
 @State(Scope.Benchmark)
 public class IntSorterBenchmark {
-    private final int[] sampleArray = new int[]{
+    static final int[] SAMPLE_ARRAY = new int[]{
             109, 869, 472, 597, 698,
             258, 495, 907, 494, 346,
             183, 960, 315, 413, 536,
@@ -40,11 +40,11 @@ public class IntSorterBenchmark {
             539, 719, 335, 761, 365
     };
 
-    private final IntSorter oxegImplementation = new OxegImplementation();
+    final IntSorter oxegImplementation = new OxegImplementation();
 
     @Benchmark
     public void oxegImplementation(Blackhole bh) {
-        bh.consume(oxegImplementation.sort(sampleArray));
+        bh.consume(oxegImplementation.sort(SAMPLE_ARRAY));
     }
 
     public static void main(String[] args) throws RunnerException {

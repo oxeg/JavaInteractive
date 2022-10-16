@@ -36,9 +36,10 @@ git checkout -b int_sorter_johndoe
 * in the task package create your subpackage (i.e. `dev.oxeg.intsorter.johndoe`)
 * write your implementation
   * write implementation class in the subpackage you created
-  * add `private final` field to the banchmark class
+  * add `final` field to the banchmark class
   * add a method that runs your implementation annotated with `@Benchmark`
   * use `Blackhole bh` method parameter and `bh.consume(...)` to prevent dead code elimination
+  * add new `@Test` method to the testcase for this task to make sure your solution is correct
 * commit and push the changes to your repository using the branch name you just created
 ```shell
 git add --all
