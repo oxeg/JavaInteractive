@@ -7,7 +7,8 @@ import java.util.Arrays;
 public class OxegImplementation implements IntSorter {
     @Override
     public int[] sort(int[] array) {
-        Arrays.sort(array);
-        return array;
+        var result = Arrays.copyOf(array, array.length);
+        Arrays.sort(result);
+        return result;
     }
 }
