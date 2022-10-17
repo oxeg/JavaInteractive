@@ -5,7 +5,7 @@
 
 ### Preparation
 * fork this project into your GitHub account
-* clone this project with `git clone` on your local machine
+* clone your forked project with `git clone` on your local machine
 * add a remote reference to this project
 ```shell
 git remote add oxeg git@github.com:oxeg/JavaInteractive.git
