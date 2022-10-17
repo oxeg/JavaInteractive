@@ -13,6 +13,11 @@ class IntSorterBenchmarkTest {
         verifyImplementations(benchmark.oxegImplementation);
     }
 
+    @Test
+    void verifyBerserkZakImplementation() {
+        verifyImplementations(benchmark.berserkZakImplementation);
+    }
+
     private static void verifyImplementations(IntSorter implementation) {
         var sorted = implementation.sort(IntSorterBenchmark.SAMPLE_ARRAY);
         verifyArraySorted(IntSorterBenchmark.SAMPLE_ARRAY, sorted);

@@ -1,5 +1,6 @@
 package dev.oxeg.intsorter;
 
+import dev.oxeg.intsorter.berserkzak.BerserkZakImplementation;
 import dev.oxeg.intsorter.oxeg.OxegImplementation;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
@@ -18,10 +19,16 @@ import java.util.concurrent.TimeUnit;
 @State(Scope.Benchmark)
 public class IntSorterBenchmark {
     final IntSorter oxegImplementation = new OxegImplementation();
+    final IntSorter berserkZakImplementation = new BerserkZakImplementation();
 
     @Benchmark
     public void oxegImplementation(Blackhole bh) {
         bh.consume(oxegImplementation.sort(SAMPLE_ARRAY));
+    }
+
+    @Benchmark
+    public void BerserkZakImplementation(Blackhole bh) {
+        bh.consume(berserkZakImplementation.sort(SAMPLE_ARRAY));
     }
 
     public static void main(String[] args) throws RunnerException {
