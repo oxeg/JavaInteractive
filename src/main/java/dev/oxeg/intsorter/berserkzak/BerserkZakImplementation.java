@@ -22,9 +22,9 @@ public class BerserkZakImplementation implements IntSorter {
                 }
             }
             if (i!=min_i) {
-                int tmp = array[i];
+                int temp = array[i];
                 array[i] = array[min_i];
-                array[min_i] = tmp;
+                array[min_i] = temp;
             }
 
         }
