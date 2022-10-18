@@ -19,7 +19,8 @@ java -jar target/benchmarks.jar IntSorterBenchmark
 
 ### Results
 ```shell
-Benchmark                                       Mode  Cnt    Score   Error  Units
-IntSorterBenchmark.javaArraySortImplementation  avgt    5  190.628 ± 0.131  ns/op
-IntSorterBenchmark.oxegBubbleImplementation     avgt    5  212.881 ± 0.177  ns/op
+Benchmark                                       Mode  Cnt       Score      Error  Units
+IntSorterBenchmark.BerserkZakImplementation     avgt    5  110003.468 ± 6775.643  ns/op
+IntSorterBenchmark.javaArraySortImplementation  avgt    5     191.484 ±    3.913  ns/op
+IntSorterBenchmark.oxegBubbleImplementation     avgt    5     213.381 ±    0.193  ns/op
 ```
