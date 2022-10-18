@@ -1,7 +1,7 @@
 # JavaInteractive
 
 ### Tasks
-* [IntSorter](src/main/java/dev/oxeg/intsorter/README.md)
+* [IntSorter](src/main/java/dev/oxeg/intsorter)
 
 ### Preparation
 * fork this project into your GitHub account
