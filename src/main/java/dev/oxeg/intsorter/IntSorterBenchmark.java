@@ -8,20 +8,28 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Warmup(iterations = 2, time = 1)
+@Warmup(iterations = 5, time = 1)
 @Measurement(iterations = 5, time = 1)
 @Fork(1)
-@State(Scope.Benchmark)
+@State(Scope.Thread)
 public class IntSorterBenchmark {
+    int[] sampleArray;
+
+    @Setup
+    public void prepareSampleArray() {
+        sampleArray = Arrays.copyOf(SAMPLE_ARRAY, SAMPLE_ARRAY.length);
+    }
+
     final IntSorter oxegImplementation = new OxegImplementation();
 
     @Benchmark
     public void oxegImplementation(Blackhole bh) {
-        bh.consume(oxegImplementation.sort(SAMPLE_ARRAY));
+        bh.consume(oxegImplementation.sort(sampleArray));
     }
 
     public static void main(String[] args) throws RunnerException {
