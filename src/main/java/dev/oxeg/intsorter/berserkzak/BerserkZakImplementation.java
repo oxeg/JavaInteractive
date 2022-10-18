@@ -2,32 +2,25 @@ package dev.oxeg.intsorter.berserkzak;
 
 import dev.oxeg.intsorter.IntSorter;
 
-import java.util.Arrays;
-
 public class BerserkZakImplementation implements IntSorter {
 
     @Override
     public int[] sort(int[] array) {
-        int [] Arrays = new int[1000];
-        for (int i=0; i<Arrays.length; i++) {
-            Arrays[i] = i + 1;
-        }
         for (int i=0; i<array.length; i++) {
-            int min = array[i];
-            int min_i = i;
+            int next = array[i];
+            int previous = i;
             for (int j=i+1; j<array.length; j++){
-                if (array[j]<min) {
-                    min = array[j];
-                    min_i = j;
+                if (array[j]<next) {
+                    next = array[j];
+                    previous = j;
                 }
             }
-            if (i!=min_i) {
+            if (i!=previous) {
                 int temp = array[i];
-                array[i] = array[min_i];
-                array[min_i] = temp;
+                array[i] = array[previous];
+                array[previous] = temp;
             }
-
         }
-        return Arrays;
+        return array;
     }
 }
