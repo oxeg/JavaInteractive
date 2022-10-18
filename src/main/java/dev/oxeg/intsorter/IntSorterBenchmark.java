@@ -1,5 +1,6 @@
 package dev.oxeg.intsorter;
 
+import dev.oxeg.intsorter.berserkzak.BerserkZakImplementation;
 import dev.oxeg.intsorter.java.ArraySortImplementation;
 import dev.oxeg.intsorter.oxeg.BubbleImplementation;
 import org.openjdk.jmh.annotations.*;
@@ -28,6 +29,7 @@ public class IntSorterBenchmark {
 
     IntSorter arraySortImplementation = new ArraySortImplementation();
     IntSorter oxegBubbleImplementation = new BubbleImplementation();
+    IntSorter berserkZakImplementation = new BerserkZakImplementation();
 
     @Benchmark
     public void javaArraySortImplementation(Blackhole bh) {
@@ -37,6 +39,11 @@ public class IntSorterBenchmark {
     @Benchmark
     public void oxegBubbleImplementation(Blackhole bh) {
         bh.consume(oxegBubbleImplementation.sort(sampleArray));
+    }
+
+    @Benchmark
+    public void BerserkZakImplementation(Blackhole bh) {
+        bh.consume(berserkZakImplementation.sort(SAMPLE_ARRAY));
     }
 
     public static void main(String[] args) throws RunnerException {

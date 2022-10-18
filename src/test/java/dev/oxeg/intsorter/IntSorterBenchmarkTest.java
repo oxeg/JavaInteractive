@@ -20,6 +20,11 @@ class IntSorterBenchmarkTest {
     void verifyOxegBubbleImplementation() {
         verifyImplementation(benchmark.oxegBubbleImplementation);
     }
+    
+    @Test
+    void verifyBerserkZakImplementation() {
+        verifyImplementation(benchmark.berserkZakImplementation);
+    }
 
     private static void verifyImplementation(IntSorter implementation) {
         var sorted = implementation.sort(Arrays.copyOf(SAMPLE_ARRAY, SAMPLE_ARRAY.length));
