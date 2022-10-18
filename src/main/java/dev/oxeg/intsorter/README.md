@@ -7,7 +7,7 @@ public interface IntSorter {
 ```
 with next conditions
 - Sort an array of integer numbers in ascending order
-- Must return new array, original array should not be overwritten
+- It's allowed to overwrite original array
 - Integer values are within range [1..1000] (both inclusive)
 - Array elements can repeate
 
@@ -19,6 +19,7 @@ java -jar target/benchmarks.jar IntSorterBenchmark
 
 ### Results
 ```shell
-Benchmark                              Mode  Cnt     Score    Error  Units
-IntSorterBenchmark.oxegImplementation  avgt    5  7665.518 ± 65.976  ns/op
+Benchmark                                       Mode  Cnt    Score   Error  Units
+IntSorterBenchmark.javaArraySortImplementation  avgt    5  190.628 ± 0.131  ns/op
+IntSorterBenchmark.oxegBubbleImplementation     avgt    5  212.881 ± 0.177  ns/op
 ```

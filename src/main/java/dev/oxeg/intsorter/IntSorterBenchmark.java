@@ -1,7 +1,8 @@
 package dev.oxeg.intsorter;
 
 import dev.oxeg.intsorter.berserkzak.BerserkZakImplementation;
-import dev.oxeg.intsorter.oxeg.OxegImplementation;
+import dev.oxeg.intsorter.java.ArraySortImplementation;
+import dev.oxeg.intsorter.oxeg.BubbleImplementation;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
@@ -9,21 +10,35 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Warmup(iterations = 2, time = 1)
+@Warmup(iterations = 5, time = 1)
 @Measurement(iterations = 5, time = 1)
 @Fork(1)
-@State(Scope.Benchmark)
+@State(Scope.Thread)
 public class IntSorterBenchmark {
-    final IntSorter oxegImplementation = new OxegImplementation();
-    final IntSorter berserkZakImplementation = new BerserkZakImplementation();
+    int[] sampleArray;
+
+    @Setup
+    public void prepareSampleArray() {
+        sampleArray = Arrays.copyOf(SAMPLE_ARRAY, SAMPLE_ARRAY.length);
+    }
+
+    IntSorter arraySortImplementation = new ArraySortImplementation();
+    IntSorter oxegBubbleImplementation = new BubbleImplementation();
+    IntSorter berserkZakImplementation = new BerserkZakImplementation();
 
     @Benchmark
-    public void oxegImplementation(Blackhole bh) {
-        bh.consume(oxegImplementation.sort(SAMPLE_ARRAY));
+    public void javaArraySortImplementation(Blackhole bh) {
+        bh.consume(arraySortImplementation.sort(sampleArray));
+    }
+
+    @Benchmark
+    public void oxegBubbleImplementation(Blackhole bh) {
+        bh.consume(oxegBubbleImplementation.sort(sampleArray));
     }
 
     @Benchmark
