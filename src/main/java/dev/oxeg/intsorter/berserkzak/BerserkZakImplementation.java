@@ -1,7 +1,6 @@
 package dev.oxeg.intsorter.berserkzak;
 
 import dev.oxeg.intsorter.IntSorter;
-
 public class BerserkZakImplementation implements IntSorter {
 
     @Override
