@@ -3,7 +3,6 @@ package dev.oxeg.intsorter.berserkzak;
 import dev.oxeg.intsorter.IntSorter;
 public class BerserkZakImplementation implements IntSorter {
 
-
     @Override
     public int[] sort(int[] array) {
         for (int i=0; i<array.length; i++) {
