@@ -12,8 +12,13 @@ class IntSorterBenchmarkTest {
     private final IntSorterBenchmark benchmark = new IntSorterBenchmark();
 
     @Test
-    void verifyOxegImplementation() {
-        verifyImplementation(benchmark.oxegImplementation);
+    void verifyArraySortImplementation() {
+        verifyImplementation(benchmark.arraySortImplementation);
+    }
+
+    @Test
+    void verifyOxegBubbleImplementation() {
+        verifyImplementation(benchmark.oxegBubbleImplementation);
     }
 
     private static void verifyImplementation(IntSorter implementation) {

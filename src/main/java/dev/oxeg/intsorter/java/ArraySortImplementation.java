@@ -1,10 +1,10 @@
-package dev.oxeg.intsorter.oxeg;
+package dev.oxeg.intsorter.java;
 
 import dev.oxeg.intsorter.IntSorter;
 
 import java.util.Arrays;
 
-public class OxegImplementation implements IntSorter {
+public class ArraySortImplementation implements IntSorter {
     @Override
     public int[] sort(int[] array) {
         Arrays.sort(array);
