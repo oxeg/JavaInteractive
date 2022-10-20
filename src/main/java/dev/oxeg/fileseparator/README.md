@@ -18,8 +18,8 @@ File length should be passed as an argument
 
 #### Middle level
 - Everything from **Junior level**
-- Reading original file and writing output files should be done in separate threads
+- Reading original file and writing output files should be done in different threads
 
 ### Senior level
 - Everything from **Middle level**
-- Original file can be bigger than heap size
+- Original file size can be bigger than heap size
