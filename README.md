@@ -2,6 +2,7 @@
 
 ### Tasks
 * [IntSorter](src/main/java/dev/oxeg/intsorter)
+* [FileSeparator](src/main/java/dev/oxeg/fileseparator)
 
 ### Preparation
 * fork this project into your GitHub account

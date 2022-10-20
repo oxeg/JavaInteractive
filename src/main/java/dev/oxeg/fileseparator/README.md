@@ -1,4 +1,4 @@
-### FileSorter
+### FileSeparator
 
 This task has several tiers of complications
 
