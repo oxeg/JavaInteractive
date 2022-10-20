@@ -8,7 +8,7 @@ import java.util.Random;
 
 import static dev.oxeg.fileseparator.oxeg.OxegFileSeparator.DIRECTORY;
 
-public class FileGenerator {
+public class OxegFileGenerator {
     private static final String UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String LOWERCASE_LETTERS = UPPERCASE_LETTERS.toLowerCase();
     private static final String DIGITS = "0123456789";
