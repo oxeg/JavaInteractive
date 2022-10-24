@@ -18,7 +18,6 @@ public class OxegFileSeparator {
         readerThread.start();
         readerThread.join();
 
-
         numbersWriter.interrupt();
         numbersWriter.join();
         lettersWriter.interrupt();

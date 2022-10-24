@@ -10,7 +10,7 @@ import static dev.oxeg.fileseparator.oxeg.OxegUtils.*;
 public class OxegFileGenerator {
     public static void main(String[] args) throws IOException {
         verifyArguments(args);
-        var fileLength = Long.parseLong(args[1]);
+        var fileLength = Long.parseLong(args[0]);
 
         var buffer = CharBuffer.allocate(BUFFER_SIZE);
         long symbolsWritten = 0;
