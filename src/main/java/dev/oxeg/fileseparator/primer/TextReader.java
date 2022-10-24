@@ -1,4 +1,4 @@
-package dev.oxeg.intsorter.primer;
+package dev.oxeg.fileseparator.primer;
 
 import java.io.FileReader;
 import java.io.IOException;

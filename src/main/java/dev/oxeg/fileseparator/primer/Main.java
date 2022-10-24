@@ -1,10 +1,10 @@
-package dev.oxeg.intsorter.primer;
+package dev.oxeg.fileseparator.primer;
 
 import java.io.File;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         new File("src/resource/Unsorted.txt").delete();
         new File("src/resource/Numbers.txt").delete();
         new File("src/resource/Letters.txt").delete();
