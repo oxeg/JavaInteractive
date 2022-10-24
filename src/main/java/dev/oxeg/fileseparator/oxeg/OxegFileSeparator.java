@@ -10,7 +10,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import static dev.oxeg.fileseparator.oxeg.OxegUtils.*;
 
 public class OxegFileSeparator {
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         final var numbersQueue = new ArrayBlockingQueue<Character>(BUFFER_SIZE);
         final var numbersWriter = new Thread(new FileWriterThread(DIRECTORY + OUTPUT_FILENAME_NUMBERS, numbersQueue));
         numbersWriter.start();
@@ -19,33 +19,15 @@ public class OxegFileSeparator {
         final var lettersWriter = new Thread(new FileWriterThread(DIRECTORY + OUTPUT_FILENAME_LETTERS, lettersQueue));
         lettersWriter.start();
 
-        try (var reader = new FileReader(DIRECTORY + INPUT_FILENAME, StandardCharsets.UTF_8)) {
-            var buffer = CharBuffer.allocate(BUFFER_SIZE);
-            var letterCounter = 0;
-            var numberCounter = 0;
-            while (reader.read(buffer) > 0) {
-                for (char c : buffer.array()) {
-                    if (Character.isDigit(c)) {
-                        numberCounter++;
-                        numbersQueue.put(c);
-                    } else if (Character.isLetter(c)) {
-                        letterCounter++;
-                        lettersQueue.put(c);
-                    } else {
-                        System.err.println("Character not allowed here: " + c);
-                        System.exit(1);
-                    }
-                }
-                buffer.clear();
-            }
-            numbersWriter.interrupt();
-            numbersWriter.join();
-            lettersWriter.interrupt();
-            lettersWriter.join();
+        var readerThread = new Thread(new FileReaderThread(DIRECTORY + INPUT_FILENAME, numbersQueue, lettersQueue));
+        readerThread.start();
+        readerThread.join();
 
-            System.out.println("Total Letters: " + letterCounter);
-            System.out.println("Total Numbers: " + numberCounter);
-        }
+
+        numbersWriter.interrupt();
+        numbersWriter.join();
+        lettersWriter.interrupt();
+        lettersWriter.join();
     }
 
     private static class FileWriterThread implements Runnable {
@@ -75,6 +57,47 @@ public class OxegFileSeparator {
                     writeBufferToFile(fileWriter, buffer);
                 }
             } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private static class FileReaderThread implements Runnable {
+        private final String fileName;
+        private final ArrayBlockingQueue<Character> numbersQueue;
+        private final ArrayBlockingQueue<Character> lettersQueue;
+
+        public FileReaderThread(String fileName, ArrayBlockingQueue<Character> numbersQueue, ArrayBlockingQueue<Character> lettersQueue) {
+            this.fileName = fileName;
+            this.numbersQueue = numbersQueue;
+            this.lettersQueue = lettersQueue;
+        }
+
+        @Override
+        public void run() {
+            try (var reader = new FileReader(fileName, StandardCharsets.UTF_8)) {
+                var buffer = CharBuffer.allocate(BUFFER_SIZE);
+                var letterCounter = 0;
+                var numberCounter = 0;
+                while (reader.read(buffer) > 0) {
+                    for (char c : buffer.array()) {
+                        if (Character.isDigit(c)) {
+                            numberCounter++;
+                            numbersQueue.put(c);
+                        } else if (Character.isLetter(c)) {
+                            letterCounter++;
+                            lettersQueue.put(c);
+                        } else {
+                            System.err.println("Character not allowed here: " + c);
+                            System.exit(1);
+                        }
+                    }
+                    buffer.clear();
+                }
+
+                System.out.println("Total Letters: " + letterCounter);
+                System.out.println("Total Numbers: " + numberCounter);
+            } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
